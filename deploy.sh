@@ -1,14 +1,14 @@
+#!/bin/bash
+
 eval `ssh-agent -s`
 ssh-add ~/.ssh/id_rsa
 
+PROJECTS_PATH="/home/mykola/dotNetProjects"
+PROJECT_NAME="collections"
+
 echo 'updating project...'
 
-PROJECTS_PATH="/home/mykola/dotNetProjects"
-PROJECTS_NAME="collections"
-
-cd $PROJECTS_PATH
-
-ssh -F ~/.ssh/config vm rm -rf $PROJECTS_PATH/$PROJECTS_NAME/*
-scp -F ~/.ssh/config -r $PROJECTS_NAME/* vm:$PROJECTS_PATH/$PROJECTS_NAME/
+ssh -F ~/.ssh/config vm rm -rf $PROJECTS_PATH/$PROJECT_NAME/*
+scp -F ~/.ssh/config -r $PROJECTS_PATH/$PROJECT_NAME/* vm:$PROJECTS_PATH/$PROJECT_NAME/
 
 ssh-agent -k
