@@ -1,9 +1,15 @@
+using collections.Interfaces;
+using collections.Mocks;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddTransient<IUsers, MockUsers>();
+
 var app = builder.Build();
+app.UsePathBase("/home/mykola/dotNetProjects/collections");
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
